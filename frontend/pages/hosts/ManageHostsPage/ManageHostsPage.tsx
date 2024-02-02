@@ -241,6 +241,7 @@ const ManageHostsPage = ({
     os_name: osName,
     os_version: osVersion,
   } = queryParams;
+  const { cve } = queryParams;
   const munkiIssueId =
     queryParams?.munki_issue_id !== undefined
       ? parseInt(queryParams.munki_issue_id, 10)
@@ -832,6 +833,8 @@ const ManageHostsPage = ({
         newQueryParams.os_version_id = osVersionId;
         newQueryParams.os_name = osName;
         newQueryParams.os_version = osVersion;
+      } else if (cve) {
+        newQueryParams.cve = cve;
       } else if (osSettingsStatus) {
         newQueryParams[PARAMS.OS_SETTINGS] = osSettingsStatus;
       } else if (diskEncryptionStatus && isPremiumTier) {
@@ -1289,6 +1292,7 @@ const ManageHostsPage = ({
       os_version_id: osVersionId,
       os_name: osName,
       os_version: osVersion,
+      cve,
       visibleColumns,
     };
 
